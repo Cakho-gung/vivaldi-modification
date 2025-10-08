@@ -1,0 +1,24 @@
+/* File: break-mode-custom.css */
+
+/* Thay đổi toàn bộ container của Break Mode */
+div.break-mode-container {
+    background: linear-gradient(135deg, #232526, #414345) !important; /* Gradient xám đen cho deep work */
+    color: #fff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Ẩn cái logo Vivaldi mặc định đi */
+div.break-mode-container svg {
+    display: none !important;
+}
+
+/* Thêm content của riêng m vào */
+div.break-mode-container::after {
+    content: "Đang sạc lại năng lượng... 🧘";
+    font-size: 24px;
+    font-family: "Be Vietnam Pro", sans-serif; /* Hoặc font gì m thích */
+    color: #e0e0e0;
+}
