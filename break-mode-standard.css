@@ -1,24 +1,194 @@
 /* File: break-mode-custom.css */
 
-/* Thay đổi toàn bộ container của Break Mode */
-div.break-mode-container {
-    background: linear-gradient(135deg, #232526, #414345) !important; /* Gradient xám đen cho deep work */
-    color: #fff !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-/* Ẩn cái logo Vivaldi mặc định đi */
-div.break-mode-container svg {
+.HUD > svg {
     display: none !important;
 }
 
-/* Thêm content của riêng m vào */
-div.break-mode-container::after {
-    content: "Đang sạc lại năng lượng... 🧘";
+/* Thay đổi toàn bộ container của Break Mode */
+
+/* 
+.HUD {
+    width: 500px !important;
+    height: 500px !important;
     font-size: 24px;
+    align-items: center;
+    background-color: #d0fdff;
+    color: var(--colorFg);
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-radius: none !important;
+    border: none;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+} */
+
+
+.HUD {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 100px;
+    width: 100% !important;
+    height: 100% !important;
+    align-items: center;
+    background-color: #000000;
+    color: var(--colorFg);
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    border: none !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-top: 30px;
+    margin-left: 0px;
+    scale: 1;
+    z-index: 2147483647; /* Đảm bảo HUD luôn ở trên cùng */
+    /* Starts from the first exhalation.
+    Exhalation should be twice as long as inhalation (2:1). */
+    /* Starts from the first inhalation. */
+}
+
+/* Thêm content của riêng m vào */
+.HUD::before {
+    content: "";
+    font-size: 32px;
     font-family: "Be Vietnam Pro", sans-serif; /* Hoặc font gì m thích */
-    color: #e0e0e0;
+    color: #000000;
+    position: absolute;
+    width: 500px;
+    height: 250px;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background-image: url(eye.gif);
+    background-size: cover; /* Đảm bảo hình vừa khít hộp */
+    background-repeat: no-repeat;
+    border-radius: 24px;
+    /* box-shadow: -15px 15px 25px rgba(255, 255, 255, 0.4);
+    animation: eye-gaze-shadow 9.14s ease-in-out infinite; */
+}
+
+/* Keyframe mô phỏng chuyển động của con mắt */
+/* @keyframes eye-gaze-shadow {
+  0% {
+    box-shadow: 0px 0px0 200px 0 rgba(255, 255, 255, 0);
+  }
+  3% {
+    box-shadow: 0px 100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  
+  4% {
+    box-shadow: 0px 100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  7% {
+    box-shadow: 0px 100px 200px 0 rgba(255, 255, 255, 0.267);
+  }
+  9% {
+    box-shadow: 0px 200px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  11% {
+    box-shadow: 0px 200px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  15% {
+    box-shadow: 200px 100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  20% {
+    box-shadow: 200px -100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  28% {
+    box-shadow: 200px -100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  32% {
+    box-shadow: 0px 0px 400px 0 rgba(255, 255, 255, 0.829);
+  }
+  36% {
+    box-shadow: 0px 0px 400px 0 rgba(255, 255, 255, 0.781);
+  }
+  38% {
+    box-shadow: 0px 0px 100px 0 rgba(255, 255, 255, 0);
+  }
+  39% {
+    box-shadow: 0px 0px 200px 0 rgba(255, 255, 255, 0.397);
+  }
+  50% {
+    box-shadow: -200px 100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  60% {
+    box-shadow: -200px -100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  75% {
+    box-shadow: 200px -100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  79% {
+    box-shadow: 200px -100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  85% {
+    box-shadow: 200px 100px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  92% {
+    box-shadow: 0px 0px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  96% {
+    box-shadow: 0px 0px 200px 0 rgba(255, 255, 255, 0.678);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0);
+  }
+} */
+
+@property --cornerShape {
+  syntax: '<number>';
+  initial-value: 2;
+  inherits: false;
+}
+.HUD > svg {
+  height: 156px;
+  width: 156px;
+}
+.HUD-enter {
+  transform: scale(1);
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  border-radius: 999px;
+}
+.HUD-enter-active {
+  opacity: 1;
+  transform: none;
+  backdrop-filter: blur(20px);
+  border-radius: 0px;
+  transition: transform 200ms ease-out, opacity 300ms ease-out, backdrop-filter 600ms ease-out;
+}
+.HUD-enter-done {
+  --breathing-rate: 10s;
+  --breathing-start-delay: 2s;
+  transition-duration: 200ms, 200ms;
+  opacity: 1;
+  /* 6 breaths per minute */
+  animation: none;
+  animation-delay: none;
+}
+.HUD-enter-done:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  corner-shape: inherit;
+  border: solid 6px var(--colorFgAlpha);
+  animation: none;
+  animation-delay: calc(var(--breathing-start-delay) + calc(var(--breathing-rate) * 0.6));
+  opacity: 0;
+}
+.HUD-enter-done:hover,
+.HUD-enter-done:focus-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.HUD-enter-done:active {
+  transform: none;
 }
