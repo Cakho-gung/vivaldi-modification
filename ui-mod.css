@@ -14,6 +14,20 @@ div.tab.active.button-off::before {
   display: none !important;
 }
 
+div.tab.active::after {
+  width: var(--currentRadius) !important;
+  height: var(--currentRadius) !important;
+  right: calc(0px - var(--currentRadius)) !important;
+  display: none !important;
+}
+
+div.tab.active::before {
+  width: var(--currentRadius) !important;
+  height: var(--currentRadius) !important;
+  left: calc(0px - var(--currentRadius)) !important;
+  display: none !important;
+}
+
 
 /* điều chỉnh border-radius */
 
@@ -21,11 +35,11 @@ div.tab.active.button-off::before {
   --currentRadius: calc(var(--radiusHalf)*2);
 }
 
-div.tab.active.button-off {
-  border-bottom-left-radius: calc(var(--currentRadius)*2);
-  border-bottom-right-radius: calc(var(--currentRadius)*2);
-  border-top-left-radius: calc(var(--currentRadius)*2);
-  border-top-right-radius: calc(var(--currentRadius)*2);
+div.tab.active{
+  border-bottom-left-radius: calc(var(--currentRadius));
+  border-bottom-right-radius: calc(var(--currentRadius));
+  border-top-left-radius: calc(var(--currentRadius));
+  border-top-right-radius: calc(var(--currentRadius));
 }
 
 .tabs-top#browser.win:not(.fullscreen, .disable-titlebar) #header,
@@ -39,7 +53,7 @@ div.tab.active.button-off {
 /* Search bar */
 
 
-div.UrlBar-AddressField.urlfield-anchor.button-textonly.below {}
+
 
 .address-top .toolbar-mainbar.toolbar-required .UrlBar-SearchField:focus-within,
 .address-top-off .toolbar-mainbar .UrlBar-SearchField:focus-within,
