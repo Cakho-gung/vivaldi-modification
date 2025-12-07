@@ -1,0 +1,74 @@
+/* Conner góc dưới khi tab được active */
+
+div.tab.active.button-off::after {
+  width: var(--currentRadius) !important;
+  height: var(--currentRadius) !important;
+  right: calc(0px - var(--currentRadius)) !important;
+  display: none !important;
+}
+
+div.tab.active.button-off::before {
+  width: var(--currentRadius) !important;
+  height: var(--currentRadius) !important;
+  left: calc(0px - var(--currentRadius)) !important;
+  display: none !important;
+}
+
+
+/* điều chỉnh border-radius */
+
+.tabbar-wrapper {
+  --currentRadius: calc(var(--radiusHalf)*2);
+}
+
+div.tab.active.button-off {
+  border-bottom-left-radius: calc(var(--currentRadius)*2);
+  border-bottom-right-radius: calc(var(--currentRadius)*2);
+  border-top-left-radius: calc(var(--currentRadius)*2);
+  border-top-right-radius: calc(var(--currentRadius)*2);
+}
+
+.tabs-top#browser.win:not(.fullscreen, .disable-titlebar) #header,
+.tabs-top.address-top#browser.win:not(.fullscreen, .disable-titlebar) #header {
+  min-height: calc((30px + var(--densityGap) * 2) / var(--uiZoomLevel));
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+
+/* Search bar */
+
+
+div.UrlBar-AddressField.urlfield-anchor.button-textonly.below {}
+
+.address-top .toolbar-mainbar.toolbar-required .UrlBar-SearchField:focus-within,
+.address-top-off .toolbar-mainbar .UrlBar-SearchField:focus-within,
+.address-top .toolbar-mainbar.toolbar-required .UrlBar-AddressField:focus-within,
+.address-top-off .toolbar-mainbar .UrlBar-AddressField:focus-within {
+  transform: scaleY(1) translateY(12px);
+}
+
+
+.ExtensionIcon--Hidde {
+  background-color: transparent;
+}
+
+.ExtensionIcon--Hidden {
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+
+#browser.win .window-buttongroup button:hover {
+  background-color: transparent;
+}
+
+#browser.win .window-buttongroup button.window-close:hover {
+  background-color: transparent;
+}
+
+
+
+.ExtensionToggleIcon.ExtensionToggleIcon--Expanded {
+  background-color: transparent;
+}
