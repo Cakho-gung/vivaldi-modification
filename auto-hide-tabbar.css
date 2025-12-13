@@ -1,0 +1,52 @@
+/* --- Chỉ chạy khi đã bật Zen Mode (Alt + H) --- */
+
+/* 1. Thiết lập Header ở chế độ Overlay (Fixed) */
+.zen-mode #header {
+    position: fixed !important; /* Nổi lềnh bềnh trên web */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Đè đầu cưỡi cổ mọi thứ */
+    
+    /* Mở khoá hiển thị để menu con không bị cắt (quan trọng cho mode fixed) */
+    overflow: visible !important; 
+
+    /* Ẩn lên trên, chừa lại 10px làm mồi nhử */
+    transform: translateY(calc(-100% + 10px)) !important;
+    opacity: 0;
+    
+    /* Animation: Có delay 0.5s khi ẩn đi để kịp bấm menu con */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.5s, opacity 0.3s ease 0.5s !important;
+}
+
+/* 2. Logic hiện ra (Khi hover, focus hoặc có popup đang mở) */
+.zen-mode #header:hover,
+.zen-mode #header:focus-within,
+/* Dùng :has để check xem có menu nào đang mở không */
+.zen-mode body:has(.button-popup-arrow) #header,
+.zen-mode body:has(.ToolbarButtonPopup-DefaultStyles) #header,
+.zen-mode body:has(.startpage-navigation-menu) #header {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    
+    /* Hiện ngay lập tức, không delay */
+    transition-delay: 0s !important;
+}
+
+/* 3. FIX VÙNG CHẾT (Quan trọng) */
+/* Tạo lớp nền cấm kéo cửa sổ để nhận Hover ở chỗ trống */
+.zen-mode #header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    -webkit-app-region: no-drag !important;
+}
+
+/* 4. (Tuỳ chọn) Đẩy cái nút Vivaldi (Logo) lên theo nếu nó bị vướng */
+.zen-mode .vivaldi {
+    /* display: none; */ /* Bỏ comment dòng này nếu m muốn ẩn luôn nút logo */
+}
